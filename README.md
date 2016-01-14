@@ -7,7 +7,7 @@ DOI: http://dx.doi.org/10.1002/mrm.24936
 
 The demo uses cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. Both methods are efficiently solved with a computational cost of three FFT per iteration. 
 
-![Cardiac cine data set](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/dataCine8fr_float.gif)
+![Cardiac cine data set](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/dataCine8fr.gif)
 
 The repository contains the following files:
 
