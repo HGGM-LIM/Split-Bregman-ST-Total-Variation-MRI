@@ -1,27 +1,35 @@
 # Split-Bregman-ST-Total-Variation-MRI
-Split Bregman spatiotemporal total variation for MRI
+Split Bregman spatiotemporal total variation for cardiac cine MRI
 
-This repository contains a demo to use Spatiotemporal Total Variaton (ST-TV) solved using the Split Bregman formulation for cardiac cine MRI
-used in the paper: 
+This repository contains a demo that shows how to use Spatiotemporal Total Variaton, which is efficiently implemented with the Split Bregman formulation, for cardiac cine MRI, as used in the paper: 
 **P Montesinos, J F P J Abascal, L Cussó, J J Vaquero, M Desco. Application of the compressed sensing technique to self-gated cardiac cine sequences in small animals. Magn Reson Med., 72(2): 369–380, 2013.** 
 DOI: http://dx.doi.org/10.1002/mrm.24936
 
-The demo uses prospective cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. Both methods are efficiently solved in the Fourier domain with a computational cost of three FFT at each iteration. 
+The demo uses cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. Both methods are efficiently solved with a computational cost of three FFT per iteration. 
 
-![Image of Yaktocat](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/image_cardiac_cine. gif)
+![Cardiac cine data set](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/dataCine8fr_float.gif)
 
 The repository contains the following files:
 
-- **ProspectiveCine16fr.mat:** Prospective cardiac cine small-animal data (16 frames, healthy rat)
+- **dataCine8fr.mat:** Absolute image of retrospective cardiac cine small-animal data (8 frames, healthy rat)
+(Acquired data can be found at http://biig.uc3m.es/cardiac-cine-data)
 
-- **image_HighDose.gif:** Video of images for high dose that shows respiratory motion
+- **dataCine8fr_float_192x192x8:** Raw data of cardiac cine data set, 192x192x8, float 
 
-- **Demo_SpatioTemporalTV_SplitBregman.m:** This demo loads data, apply an undersampling and compares S-TV and ST-TV
+- **dataCine8fr.gif:** Video of images of cardiac cine data set 
 
-- **SpatialTV_SplitBregman.m:** Split Bregman S-TV method
-- 
-- **SpatioTemporalTVSBIso.m:** Split Bregman ST-TV 
+- **Demo_SpatioTemporalTV_SplitBregman_Sim.m:** This demo loads image, simulate an undersampling pattern for a given acceleration and reconstruct data using spatial total variation (S-TV) and spatiotemporal TV (ST-TV)
+
+- **SpatialTVSB.m:** S-TV solved using the Split Bregman formulation
+
+- **SpatioTemporalTVSB.m:** ST-TV solved using the Split Bregman formulation
+
+- **genPDF.m:** Function to generate a pdf with polynomial variable density sampling, by Michael Lustig 2007, downloaded from (SparseMRI V0.2), http://web.stanford.edu/~mlustig/SparseMRI.html, see M. Lustig, D.L
+
+- **genSampling_LIM.m:** Monte-carlo algorithm to generate a sampling pattern. Modified from the original function by Michael Lustig 2007
+
+- **maxSidePeakRatio.m:** Computes the maximum sidelobe to peak ratio of point spread function for undersampled data. Used within genSampling_LIM.m
 
 Data has been saved using MATLAB R2012b.
 
-If you need to contact the author, please do so at juanabascal78 (AT) gmail (DOT) com.
+If you need to contact the author, please do so at juanabascal78 (AT) gmail (DOT) com, desco (AT) hggm (DOT) es
