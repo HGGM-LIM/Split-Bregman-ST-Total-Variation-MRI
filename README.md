@@ -31,4 +31,4 @@ The repository contains the following files:
 - **maxSidePeakRatio.m:** Computes the maximum sidelobe to peak ratio of point spread function for undersampled data. Used within genSampling_LIM.m
 
 
-If you need to contact the author, please do so at juanabascal78 (AT) gmail (DOT) com, desco (AT) hggm (DOT) es
+If you need to contact the author, please do so at paumsdv@gmail.com, juanabascal78.gmail.com, desco@hggm.es
