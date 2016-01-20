@@ -136,7 +136,7 @@ for outer = 1:nBreg;
         if any([outer==1 outer==100 rem(outer,200)==0])
             figure(h); waitbar(outer/nBreg,h);    
             figure(h2);
-            imagesc(ifftshift(abs(u(:,:,1)))); title(['ST-TV iter. ' num2str(outer) ]); colormap gray; axis image; drawnow;
+            imagesc(abs(u(:,:,1))); title(['ST-TV iter. ' num2str(outer) ]); colormap gray; axis image; drawnow;
         end        
     end % nargin
     
