@@ -31,7 +31,7 @@
 % Juan Felipe Pérez-Juste Abascal, Paula Montesinos
 % Departamento de Bioingeniería e Ingeniería Aeroespacial
 % Universidad Carlos III de Madrid, Madrid, Spain
-% juanabascal78@gmail.com, desco@hggm.es
+% paumsdv@gmail.com, juanabascal78@gmail.com, desco@hggm.es
 
 function [u,errAll] = SpatialTVSB(R,f, mu, lambda, gamma, nInner, nBreg,varargin)
 

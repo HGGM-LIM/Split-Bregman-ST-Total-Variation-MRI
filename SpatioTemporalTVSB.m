@@ -42,10 +42,10 @@
 % Problems. SIAM J. Imaging Sci., 2(2), 323–343.  
 %
 %
-% Juan Felipe Pérez-Juste Abascal
+% Juan Felipe Pérez-Juste Abascal, Paula Montesinos
 % Departamento de Bioingeniería e Ingeniería Aeroespacial
 % Universidad Carlos III de Madrid, Madrid, Spain
-% juanabascal78@gmail.com, desco@hggm.es
+% paumsdv@gmail.com, juanabascal78@gmail.com, desco@hggm.es
 
 function [u,varargout] = SpatioTemporalTVSB(RAll,fAll, dimIm,betaxy,betat,mu, lambda, gamma, nInner, nBreg,varargin)
 
