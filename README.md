@@ -13,7 +13,7 @@ where u is the unknown image, F is the undersampled Fourier transform, f is the 
 
 The Split Bregman method separates L2- and L1-norm functionals in such a way that they can be solved analytically in two alternating steps. In the first step a linear system is efficiently solved in the Fourier domain, which can be done in MRI and image denoising problems where operators have representation in the Fourier domain. The computational cost is three FFT per iteration. 
 
-The demo uses cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. Both methods are efficiently solved with a computational cost of three FFT per iteration. 
+The demo uses cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. 
 
 ![Cardiac cine data set](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/dataCine8fr.gif)
 
