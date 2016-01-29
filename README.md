@@ -5,6 +5,12 @@ This repository contains a demo that shows how to use Spatiotemporal Total Varia
 **P Montesinos, J F P J Abascal, L Cussó, J J Vaquero, M Desco. Application of the compressed sensing technique to self-gated cardiac cine sequences in small animals. Magn Reson Med., 72(2): 369–380, 2013.** 
 DOI: http://dx.doi.org/10.1002/mrm.24936
 
+SpatioTemporalTVSB.m minimizes: 
+
+![ST-TV](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/STTVFormula.jpg)
+
+where u is the unknown image, F is the undersampled Fourier transform, f is the undersampled data, and beta_xy and beta_t| are spatial and temporal weighting sparsity parameters. This implementation allows selecting different weighting sparsity parameter for time and space.
+
 The Split Bregman method separates L2- and L1-norm functionals in such a way that they can be solved analytically in two alternating steps. In the first step a linear system is efficiently solved in the Fourier domain, which can be done in MRI and image denoising problems where operators have representation in the Fourier domain. The computational cost is three FFT per iteration. 
 
 The demo uses cardiac cine small-animal data to simulate an undersampling pattern based on a variable density pdf and compare Spatial TV with Spatiotemporal TV. Both methods are efficiently solved with a computational cost of three FFT per iteration. 
