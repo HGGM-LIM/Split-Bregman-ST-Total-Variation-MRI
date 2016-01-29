@@ -9,7 +9,7 @@ SpatioTemporalTVSB.m minimizes:
 
 ![ST-TV](https://github.com/HGGM-LIM/Split-Bregman-ST-Total-Variation-MRI/blob/master/STTVFormula.jpg)
 
-where u is the unknown image, F is the undersampled Fourier transform, f is the undersampled data, and beta_xy and beta_t| are spatial and temporal weighting sparsity parameters. This implementation allows selecting different weighting sparsity parameter for time and space.
+where u is the unknown image, F is the undersampled Fourier transform, f is the undersampled data, and beta_xy and beta_t are spatial and temporal weighting sparsity parameters. This implementation allows selecting different weighting sparsity parameter for time and space.
 
 The Split Bregman method separates L2- and L1-norm functionals in such a way that they can be solved analytically in two alternating steps. In the first step a linear system is efficiently solved in the Fourier domain, which can be done in MRI and image denoising problems where operators have representation in the Fourier domain. The computational cost is three FFT per iteration. 
 
