@@ -57,16 +57,6 @@ numTime     = dimIm(3);
 normFactor  = getNormalizationFactor(RAll(:,:,1),fAll(:,:,1));
 fAll        = normFactor*fAll;
 
-switch nargin
-    case 11
-        errAll      = zeros(nBreg,numTime);
-        imTrueAll   = varargin{1};
-        imTrueAll   = normFactor*imTrueAll;
-        for it = 1:numTime
-            imTrueAllNorm(it) = norm(reshape(imTrueAll(:,:,it),[],1));
-        end
-end % nargin
-
 % Reserve memory for the auxillary variables
 f0All       = fAll;
 u           = zeros(rows,cols,numTime);
@@ -81,7 +71,18 @@ uBest       = u;
 errBest     = inf;
 
 % RHS of the linear system
-murf        = ifft2(mu*fAll);
+scale       = sqrt(rows*cols);
+murf        = ifft2(mu*fAll)*scale;
+
+switch nargin
+    case 11
+        errAll      = zeros(nBreg,numTime);
+        imTrueAll   = varargin{1};
+        imTrueAll   = (normFactor*scale)*imTrueAll;
+        for it = 1:numTime
+            imTrueAllNorm(it) = norm(reshape(imTrueAll(:,:,it),[],1));
+        end
+end % nargin
 
 % Build Kernels 
 % Spatiotemporal Hessian in the Fourier Domain
@@ -117,9 +118,9 @@ for outer = 1:nBreg;
         bt      = bt+dt-t;
     end % inner
     
-    fForw       = RAll.*fft2(u);
+    fForw       = RAll.*fft2(u)/scale;
     fAll        = fAll + f0All - fForw;    
-    murf        = ifft2(mu*fAll);
+    murf        = ifft2(mu*fAll)*scale;
     
     if (nargin >= 11)
         % Compute the error
@@ -133,7 +134,7 @@ for outer = 1:nBreg;
             errBest     = mean(errThis);
         end %errThis
         
-        if any([outer==1 outer==100 rem(outer,200)==0])
+        if any([outer==1 rem(outer,20)==0])
             figure(h); waitbar(outer/nBreg,h);    
             figure(h2);
             imagesc(abs(u(:,:,1))); title(['ST-TV iter. ' num2str(outer) ]); colormap gray; axis image; drawnow;
@@ -150,7 +151,7 @@ if (nargin >= 9)
 end % nargin
 
 % undo the normalization so that results are scaled properly
-u = u/normFactor;
+u = u/(normFactor*scale);
 
 return;
 

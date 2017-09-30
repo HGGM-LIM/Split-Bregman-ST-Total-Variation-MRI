@@ -85,11 +85,11 @@ u_ifft      = ifft2(data(:,:,fr));
 % STATIC Spatial Total Variation reconstruction using Split Bregman
 % Code download from
 % http://www.ece.rice.edu/~tag7/Tom_Goldstein/Split_Bregman.html
-mu          = 4;
+mu          = 1;
 lambda      = 1;
-gamma       = 1;
+gamma       = 1e-4;
 nInner      = 1;
-nBreg       = 2500;
+nBreg       = 100;
 
 % Goldstein's spatial TV using the Split Bregman formulation
 % u_tv = mrics(RAll(:,:,1),data(:,:,1), mu, lambda, gamma, nInner, nBreg);
@@ -101,29 +101,30 @@ nBreg       = 2500;
 % ------------------------------------------------------------------------
 % SpatioTemporal Total Variation with larger temporal sparsity
 % Dynamic reconstruction
-betaxy      = 0.2;
-betat       = 1;
-mu          = 4;
+betaxy      = 0.3;
+betat       = 0.7;
+mu          = 1;
 lambda      = 1;
 gamma       = 1;
 nInner      = 1;
-nBreg       = 2500;
+nBreg       = 100;
 [u_ttv,err_ttv] = SpatioTemporalTVSB(RAll,data,N,betaxy,betat,mu,lambda,gamma,nInner,nBreg,image0);
 % ------------------------------------------------------------------------
 % Comparison of results
 figure; 
 tmp     = (image0(:,:,fr));
 subplot(2,2,1); imagesc(abs(tmp(40:150,70:190))); axis image; 
-axis off; colormap gray; title('Full data');
+axis off; colormap gray; title('Full data'); ca = caxis;
 tmp     = (u_ifft);
 subplot(2,2,2); imagesc(abs(tmp(40:150,70:190))); axis image; 
-axis off; colormap gray; title('IFFT2');
+axis off; colormap gray; title('IFFT2'); caxis(ca);
 tmp     = (u_tv);
 subplot(2,2,3); imagesc(abs(tmp(40:150,70:190))); axis image; 
 axis off; colormap gray; title(['STV , ' num2str(100*sparsity) '% undersampling' ]);
 tmp     = (u_ttv(:,:,fr));
 subplot(2,2,4); imagesc(abs(tmp(40:150,70:190))); axis image; 
 axis off; colormap gray; title(['STTV, ' num2str(100*sparsity) ' % undersampling' ]);
+caxis(ca);
 drawnow; 
 
 % Minimum error norm

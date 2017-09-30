@@ -49,18 +49,19 @@ y           = zeros(rows,cols);
 bx          = zeros(rows,cols);
 by          = zeros(rows,cols);
 
+% RHS of the linear system
+scale = sqrt(rows*cols);
+murf = ifft2(mu*R.*f)*scale;
+
 switch nargin
     case 8        
         imTrue      = varargin{1};
-        imTrue      = normFactor*imTrue;
+        imTrue      = (normFactor*scale)*imTrue;
         imTrueNorm  = norm(imTrue(:));
         errAll      = zeros(nBreg,1);
         errBest     = inf;
         uBest       = u;
 end % switch
-
-% RHS of the linear system
-murf = ifft2(mu*R.*f);
 
 % Build Kernels in the Fourier space
 uker = zeros(rows,cols);
@@ -88,8 +89,8 @@ for outer = 1:nBreg;
 
     end % inner
 
-    f           = f+f0-R.*fft2(u);
-    murf        = ifft2(mu*R.*f);
+    f           = f+f0-R.*fft2(u)/scale;
+    murf        = ifft2(mu*R.*f)*scale;
 
     % Compute the error
     if nargin >= 8
@@ -100,7 +101,7 @@ for outer = 1:nBreg;
         end %errThis
     end % nargin
 %    
-    if any([outer==1 outer==100 rem(outer,400)==0])
+    if any([outer==1 rem(outer,20)==0])
         figure(h); waitbar(outer/nBreg,h);        
         figure(h2);
         imagesc(abs(u)); title(['STV iter. ' num2str(outer) ]); colormap gray; axis image; drawnow;
@@ -115,7 +116,7 @@ if nargin >= 8
 end
 
 % undo the normalization so that results are scaled properly
-u = u/normFactor;
+u = u/(normFactor*scale);
 
 return;
 
